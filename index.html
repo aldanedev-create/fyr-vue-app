@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fyr + Vue.js Together</title>
-<link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/style.css" />
+
   <!-- ===== VUE.js CDN ===== -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
@@ -21,31 +22,16 @@
 
   <div id="app" fyr-app="fyr-vue">
 
-    <!-- ========================================== -->
-    <!-- FYR CONTROLLER - Main Layout & State      -->
-    <!-- ========================================== -->
+    <!-- ===== FYR CONTROLLER ===== -->
     <section fyr-controller="main">
 
-      <!-- Navbar -->
       <nav class="navbar">
         <div class="nav-inner">
           <span class="logo">⚡ Fyr <span style="color:#42b883;">+ Vue</span></span>
           <div class="nav-tabs">
-            <button
-              class="tab-btn"
-              fyr-class="{ active: activeTab === 'fyr' }"
-              fyr-click="switchTab('fyr')"
-            >🔥 Fyr</button>
-            <button
-              class="tab-btn"
-              fyr-class="{ active: activeTab === 'vue' }"
-              fyr-click="switchTab('vue')"
-            >💚 Vue</button>
-            <button
-              class="tab-btn"
-              fyr-class="{ active: activeTab === 'both' }"
-              fyr-click="switchTab('both')"
-            >🤝 Together</button>
+            <button class="tab-btn" fyr-class="{ active: activeTab === 'fyr' }" fyr-click="switchTab('fyr')">🔥 Fyr</button>
+            <button class="tab-btn" fyr-class="{ active: activeTab === 'vue' }" fyr-click="switchTab('vue')">💚 Vue</button>
+            <button class="tab-btn" fyr-class="{ active: activeTab === 'both' }" fyr-click="switchTab('both')">🤝 Together</button>
           </div>
           <span class="shared-status" fyr-text="'Status: ' + sharedMessage"></span>
         </div>
@@ -56,22 +42,15 @@
         <div class="fyr-section">
           <h2>🔥 Fyr in Action</h2>
           <p>This is rendered by Fyr directly.</p>
-
           <div class="fyr-counter">
             <p>Fyr Count: <strong fyr-text="fyrCount"></strong></p>
             <button class="btn" fyr-click="fyrCount++">+1</button>
             <button class="btn" fyr-click="fyrCount--">-1</button>
             <button class="btn btn-reset" fyr-click="fyrCount = 0">Reset</button>
           </div>
-
           <div class="fyr-list">
             <p>Fyr Items: <span fyr-text="fyrItems.length"></span></p>
-            <input
-              type="text"
-              fyr-model="fyrNewItem"
-              placeholder="Add item..."
-              fyr-on:keyup.enter="addFyrItem()"
-            />
+            <input type="text" fyr-model="fyrNewItem" placeholder="Add item..." fyr-on:keyup.enter="addFyrItem()" />
             <button class="btn btn-sm" fyr-click="addFyrItem()">Add</button>
             <ul>
               <li fyr-for="item in fyrItems" fyr-key="item">
@@ -80,7 +59,6 @@
               </li>
             </ul>
           </div>
-
           <p class="hint">⬅️ All Fyr — no Vue here!</p>
         </div>
       </div>
@@ -90,14 +68,12 @@
         <div class="vue-section" id="vue-app">
           <h2>💚 Vue in Action</h2>
           <p>This is rendered by Vue.js.</p>
-
           <div class="vue-counter">
             <p>Vue Count: <strong>{{ vueCount }}</strong></p>
             <button class="btn" @click="vueCount++">+1</button>
             <button class="btn" @click="vueCount--">-1</button>
             <button class="btn btn-reset" @click="vueCount = 0">Reset</button>
           </div>
-
           <div class="vue-list">
             <p>Vue Todos: {{ vueTodos.length }}</p>
             <input type="text" v-model="vueNewTodo" @keyup.enter="addVueTodo()" placeholder="Add todo..." />
@@ -109,7 +85,6 @@
               </li>
             </ul>
           </div>
-
           <p class="hint">⬅️ All Vue — no Fyr here!</p>
         </div>
       </div>
@@ -119,47 +94,30 @@
         <div class="both-section">
           <h2>🤝 Fyr + Vue Working Together</h2>
           <p>State flows between both frameworks!</p>
-
           <div class="both-grid">
-            <!-- Fyr Side -->
             <div class="both-card fyr-card">
               <h3>🔥 Fyr</h3>
               <p>Message: <strong fyr-text="sharedMessage"></strong></p>
-              <input
-                type="text"
-                fyr-model="sharedMessage"
-                placeholder="Type here..."
-                class="both-input"
-              />
+              <input type="text" fyr-model="sharedMessage" placeholder="Type here..." class="both-input" />
               <button class="btn btn-sm" fyr-click="updateFyrMessage()">Update Fyr</button>
               <p><small>Fyr Items: {{ fyrItems.length }}</small></p>
             </div>
-
-            <!-- Vue Side -->
             <div class="both-card vue-card" id="vue-both-app">
               <h3>💚 Vue</h3>
               <p>Message from Fyr: <strong>{{ sharedMessage }}</strong></p>
-              <input
-                type="text"
-                v-model="vueMessage"
-                placeholder="Type here..."
-                class="both-input"
-              />
+              <input type="text" v-model="vueMessage" placeholder="Type here..." class="both-input" />
               <button class="btn btn-sm" @click="sendToFyr()">Send to Fyr</button>
               <p><small>Vue Todos: {{ vueTodos.length }}</small></p>
             </div>
           </div>
-
           <div class="both-status">
             <p>🔄 Changes in one framework update the other!</p>
             <p>Fyr Count: <span fyr-text="fyrCount"></span> | Vue Count: <span id="vue-count-display">0</span></p>
           </div>
-
           <p class="hint">⬅️ This is the magic — both frameworks share state!</p>
         </div>
       </div>
 
-      <!-- Footer -->
       <footer class="footer">
         <p>⚡ Fyr + 💚 Vue — Working together in harmony</p>
       </footer>
@@ -168,9 +126,6 @@
 
   </div>
 
-  <!-- ========================================== -->
-  <!-- SCRIPTS                                   -->
-  <!-- ========================================== -->
   <script type="module" src="/app.js"></script>
 
 </body>
